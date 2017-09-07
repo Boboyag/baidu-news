@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var dbConf = require('./db.js');
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 var xss = require('xss');
 var csrf = require('csurf');
 
 //创建路由中间件
-var csrfProtection = csrf({ cookie: true });
-var parseForm = bodyParser.urlencoded({ extended: false });
+// var csrfProtection = csrf({ cookie: true });
+// var parseForm = bodyParser.urlencoded({ extended: false });
 
 var connection = mysql.createPool(dbConf.db);
 
@@ -17,9 +17,9 @@ var connection = mysql.createPool(dbConf.db);
 /*后台路由页面*/
 
 //请求进入后台页面（users.ejs）
-router.get('/',csrfProtection,function(req,res,next) {
-    res.render('users',{ csrfToken: req.csrfToken() })
-});
+// router.get('/',csrfProtection,function(req,res,next) {
+//     res.render('users',{ csrfToken: req.csrfToken() })
+// });
 
 //获取所有新闻列表
 router.get('/getnews', function(req, res, next) {
@@ -30,7 +30,7 @@ router.get('/getnews', function(req, res, next) {
 });
 
 //添加新闻
-router.post('/insert', parseForm, csrfProtection,function(req,res) {
+router.post('/insert',function(req,res) {
     var newstype = xss(req.body.newstype),
         newstitle = xss(req.body.newstitle),
         newsimg = xss(req.body.newsimg),
@@ -54,7 +54,7 @@ router.get('/curnews',function(req,res) {
 
 
 //确认更新
-router.post('/update', parseForm, csrfProtection,function(req,res) {
+router.post('/update',function(req,res) {
     var newsid = req.body.id,
         newstype = xss(req.body.newstype),
         newstitle = xss(req.body.newstitle),
