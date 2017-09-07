@@ -6,5 +6,6 @@
 后端用到的知识有：nodeJS的express.js、ejs<br><br>
 后端接口区域添加了防跨站脚本攻击的xss插件和防跨站请求伪造的csurf插件<br><br>
 # 前台页面展示
-
+![image text](https://github.com/Boboyag/baidu-news/blob/master/public/images/6.jpg)
 # 后台页面展示
+![image text](https://github.com/Boboyag/baidu-news/blob/master/public/images/5.jpg)
